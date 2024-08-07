@@ -12,6 +12,7 @@ MainMenuState::~MainMenuState()
 }
 
 void MainMenuState::init() {
+    this->initFonts();
     this->initKeyBinds();
     this->initBackground();
 }
@@ -43,6 +44,7 @@ void MainMenuState::updateInput(const float& deltaTime)
 
 void MainMenuState::update(const float& deltaTime)
 {
+    this->updateMosePositions();
     this->updateInput(deltaTime);
 }
 
@@ -50,4 +52,8 @@ void MainMenuState::render(sf::RenderTarget* target)
 {
     if(!target) target = this->window;
     target->draw(this->background);
+}
+
+void MainMenuState::initFonts() {
+
 }

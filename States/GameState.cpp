@@ -48,6 +48,7 @@ void GameState::updateInput(const float& deltaTime)
 
 void GameState::update(const float& deltaTime)
 {
+    this->updateMosePositions();
     this->updateInput(deltaTime);
     this->player.update(deltaTime);
 }

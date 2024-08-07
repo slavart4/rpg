@@ -24,3 +24,9 @@ void State::checkForQuit()
         this->quit = true;
     }
 }
+
+void State::updateMosePositions() {
+    this->mousePositionScreen = sf::Mouse::getPosition();
+    this->mousePositionWindow = sf::Mouse::getPosition(*this->window);
+    this->mousePositionView = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
+}
