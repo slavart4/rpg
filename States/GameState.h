@@ -9,17 +9,16 @@ private:
 
     void initKeyBinds();
 public:
-    ///TODO: supportedKeys use & instead of *
-
     GameState(sf::RenderWindow* window, std::map <std::string, int> *supportedKeys);
     ~GameState() override;
+    void init();
 
     void endState();
 
 
     void updateInput(const float& deltaTime) override;
     void update(const float& deltaTime) override;
-    void render(sf::RenderTarget* target = nullptr) override;
+    void render(sf::RenderTarget* target) override;
 };
 
 

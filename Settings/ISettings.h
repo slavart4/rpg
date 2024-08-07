@@ -9,13 +9,12 @@
 
 class ISettings {
 public:
-    //virtual ISettings &getInstance() = 0;
+    virtual ~ISettings() = default;
 
     virtual nlohmann::json readData() = 0;
     virtual void fillData() = 0;
 
     virtual void setSettingsFilePath() = 0;
 };
-
 
 #endif

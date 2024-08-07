@@ -1,11 +1,8 @@
 #ifndef RPG_GAME_H
 #define RPG_GAME_H
 
-#include "../Settings/ISettings.h"
 #include "../Settings/WindowSettings.h"
-
-#include "../States/State.h"
-#include "../States/GameState.h"
+#include "../States/MainMenuState.h"
 
 class Game
 {

@@ -6,6 +6,10 @@ add_executable(rpg main.cpp Entities/Entity.cpp Entities/Entity.h GameEngine/Gam
         Settings/ISettings.h
         Settings/WindowSettings.cpp
         Settings/WindowSettings.h
+        States/MainMenuState.cpp
+        States/MainMenuState.h
+        Input/Button.cpp
+        Input/Button.h
 )
 include_directories(include)
 set(EXECUTABLE_OUTPUT_PATH ${rpg_SOURCE_DIR}/bin)

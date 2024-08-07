@@ -6,7 +6,7 @@
 class WindowSettings : public ISettings {
 public:
     WindowSettings();
-    ~WindowSettings();
+    ~WindowSettings() override;
 
     void init();
     void setSettingsFilePath() override;
