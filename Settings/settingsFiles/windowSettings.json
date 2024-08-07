@@ -1,0 +1,6 @@
+{
+  "windowWidth": 800,
+  "windowHigh": 600,
+  "framerateLimit": 120,
+  "verticalSyncEnabled": false
+}

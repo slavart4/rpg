@@ -1,0 +1,26 @@
+{
+  "move": {
+    "UP": {
+      "key": "W",
+      "code": 0
+    },
+    "LEFT": {
+      "key": "A",
+      "code": 0
+    },
+    "DOWN": {
+      "key": "S",
+      "code": 0
+    },
+    "RIGHT": {
+      "key": "D",
+      "code": 0
+    }
+  },
+  "general": {
+    "ESC": {
+      "key": "Escape",
+      "code": 0
+    }
+  }
+}

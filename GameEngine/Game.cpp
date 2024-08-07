@@ -1,6 +1,7 @@
 #include "Game.h"
 
 Game::Game() {
+    this->windowSettings = new WindowSettings();
     this->initWindow();
     this->initKeys();
     this->initStates();
@@ -17,7 +18,8 @@ Game::~Game() {
 
 void Game::initWindow()
 {
-    this->window = new sf::RenderWindow(sf::VideoMode(800, 600), "SFML RPG!");
+    this->window = new sf::RenderWindow(sf::VideoMode(this->windowSettings->readData()["windowWidth"],
+                                                      this->windowSettings->readData()["windowHigh"]), "SFML RPG!");
     this->window->setFramerateLimit(120);
     this->window->setVerticalSyncEnabled(false);
 

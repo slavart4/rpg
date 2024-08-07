@@ -1,7 +1,12 @@
 cmake_minimum_required(VERSION 3.22)
 project(rpg)
 
-add_executable(rpg main.cpp Entities/Entity.cpp Entities/Entity.h GameEngine/Game.cpp GameEngine/Game.h States/GameState.cpp States/GameState.h States/State.cpp States/State.h)
+add_executable(rpg main.cpp Entities/Entity.cpp Entities/Entity.h GameEngine/Game.cpp GameEngine/Game.h
+        States/GameState.cpp States/GameState.h States/State.cpp States/State.h
+        Settings/ISettings.h
+        Settings/WindowSettings.cpp
+        Settings/WindowSettings.h
+)
 include_directories(include)
 set(EXECUTABLE_OUTPUT_PATH ${rpg_SOURCE_DIR}/bin)
 

@@ -1,12 +1,16 @@
 #ifndef RPG_GAME_H
 #define RPG_GAME_H
 
+#include "../Settings/ISettings.h"
+#include "../Settings/WindowSettings.h"
+
 #include "../States/State.h"
 #include "../States/GameState.h"
 
 class Game
 {
 private:
+    ISettings *windowSettings;
     sf::RenderWindow *window;
     sf::Event sfEvent;
 
