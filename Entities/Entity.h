@@ -17,12 +17,6 @@
 
 class Entity
 {
-private:
-
-protected:
-    sf::RectangleShape shape;
-    float movementSpeed;
-
 public:
     Entity();
     virtual ~Entity();
@@ -31,6 +25,11 @@ public:
 
     virtual void update(const float &deltaTime);
     virtual void render(sf::RenderTarget *target);
+private:
+
+protected:
+    sf::RectangleShape shape;
+    float movementSpeed;
 };
 
 

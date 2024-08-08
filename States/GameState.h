@@ -4,10 +4,6 @@
 #include "State.h"
 class GameState : public State
 {
-private:
-    Entity player;
-
-    void initKeyBinds();
 public:
     GameState(sf::RenderWindow* window, std::map <std::string, int> *supportedKeys);
     ~GameState() override;
@@ -19,6 +15,10 @@ public:
     void updateInput(const float& deltaTime) override;
     void update(const float& deltaTime) override;
     void render(sf::RenderTarget* target) override;
+private:
+    Entity player;
+
+    void initKeyBinds();
 };
 
 
