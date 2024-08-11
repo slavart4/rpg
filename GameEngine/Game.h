@@ -7,6 +7,8 @@
 class Game
 {
 private:
+    StateContext *stateContext;
+
     ISettings *windowSettings;
     sf::RenderWindow *window;
     sf::Event sfEvent;
@@ -14,7 +16,6 @@ private:
     sf::Clock dtClock;
     float deltaTime;
 
-    std::stack<State*> states;
     std::map <std::string, int> supportedKeys;
 
     void initWindow();

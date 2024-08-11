@@ -3,12 +3,13 @@
 GameState::GameState(sf::RenderWindow* window,  std::map <std::string, int> *supportedKeys)
         :State(window, supportedKeys)
 {
+    std::cout << "GameState" << std::endl;
     this->init();
 }
 
 GameState::~GameState()
 {
-
+    std::cout << "~GameState" << std::endl;
 }
 
 void GameState::init() {

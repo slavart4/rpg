@@ -3,9 +3,14 @@
 
 #include "../Entities/Entity.h"
 
+class StateContext;
+class State;
+
 class State
 {
 protected:
+    StateContext *context_;
+
     sf::RenderWindow* window;
     std::map <std::string, int> *supportedKeys;
     std::map <std::string, int> keyBinds;
@@ -23,6 +28,10 @@ public:
     State(sf::RenderWindow* window, std::map <std::string, int> *supportedKeys);
     virtual ~State();
 
+    void set_context(StateContext *context) {
+        this->context_ = context;
+    }
+
     const bool& getQuit() const;
 
     virtual void checkForQuit();
@@ -34,5 +43,21 @@ public:
     virtual void render(sf::RenderTarget* target) = 0;
 };
 
+class StateContext {
+private:
+    State *state_;
+
+public:
+    explicit StateContext(State *state);
+    ~StateContext();
+
+    void TransitionTo(State *state);
+
+    void update(const float& deltaTime);
+    void render(sf::RenderTarget* target);
+
+    void endState();
+    const bool& getQuit() const;
+};
 
 #endif //RPG_STATE_H

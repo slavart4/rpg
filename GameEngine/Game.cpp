@@ -10,11 +10,7 @@ Game::Game() {
 Game::~Game() {
     delete this->window;
     delete this->windowSettings;
-
-    while (!this->states.empty()) {
-        delete this->states.top();
-        this->states.pop();
-    }
+    delete this->stateContext;
 }
 
 void Game::initWindow()
@@ -37,8 +33,9 @@ void Game::initKeys() {
 
 void Game::initStates()
 {
-    this->states.push(new MainMenuState(this->window, &this->supportedKeys));
-    //this->states.push(new GameState(this->window, &this->supportedKeys));
+    State *mainMenuState = new MainMenuState(this->window, &this->supportedKeys);
+    this->stateContext = new StateContext(mainMenuState);
+    mainMenuState->set_context(this->stateContext);
 }
 
 void Game::updateDeltaTime()
@@ -60,19 +57,9 @@ void Game::update()
 {
     this->updateSFMLEvents();
 
-    if (!this->states.empty())
-    {
-        this->states.top()->update(this->deltaTime);
-
-        if(this->states.top()->getQuit())
-        {
-            this->states.top()->endState();
-            delete this->states.top();
-            this->states.pop();
-        }
-    }
-    else
-    {
+    if(this->stateContext) {
+        this->stateContext->update(this->deltaTime);
+    } else {
         this->window->close();
     }
 }
@@ -81,9 +68,9 @@ void Game::render()
 {
     this->window->clear();
 
-    // Update items
-    if (!this->states.empty()) {
-        this->states.top()->render(this->window);
+    // Render items
+    if (this->stateContext) {
+        this->stateContext->render(this->window);
     }
 
     this->window->display();

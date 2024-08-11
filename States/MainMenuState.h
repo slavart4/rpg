@@ -6,7 +6,6 @@
 
 class MainMenuState : public State {
 private:
-    //TODO: Add fonts config
     void initFonts();
     void initKeyBinds() override;
 

@@ -3,11 +3,13 @@
 MainMenuState::MainMenuState(sf::RenderWindow* window,  std::map <std::string, int> *supportedKeys)
         :State(window, supportedKeys)
 {
+    std::cout << "MainMenuState" << std::endl;
     this->init();
 }
 
 MainMenuState::~MainMenuState()
 {
+    std::cout << "~MainMenuState" << std::endl;
     for(auto &button : this->buttons) {
         delete button.second;
     }
@@ -38,7 +40,6 @@ void MainMenuState::initKeyBinds()
 void MainMenuState::endState()
 {
     this->quit = true;
-    std::cout << "Ending main menu state" << std::endl;
 }
 
 void MainMenuState::updateInput(const float& deltaTime)
@@ -53,12 +54,15 @@ void MainMenuState::updateButtons() {
 
     // new game
     if(this->buttons["NEW_GAME"]->getIsPressed()) {
-        this->endState();
+//        this->endState();
+        this->context_->TransitionTo(new GameState(this->window, this->supportedKeys));
+        return;
     }
 
     // check for quit
     if(this->buttons["EXIT_GAME"]->getIsPressed()) {
-        this->endState();
+//        this->endState();
+        return;
     }
 }
 
