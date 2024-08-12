@@ -5,7 +5,7 @@
 class GameState : public State
 {
 public:
-    GameState(sf::RenderWindow* window, std::map <std::string, int> *supportedKeys);
+    GameState(sf::RenderWindow* window, Mouse *mouse, std::map <std::string, int> *supportedKeys);
     ~GameState() override;
     void init();
 

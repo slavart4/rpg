@@ -1,7 +1,6 @@
 #include "Game.h"
 
 Game::Game() {
-    this->windowSettings = new WindowSettings();
     this->initWindow();
     this->initKeys();
     this->initStates();
@@ -11,15 +10,19 @@ Game::~Game() {
     delete this->window;
     delete this->windowSettings;
     delete this->stateContext;
+    delete this->mouse;
 }
 
 void Game::initWindow()
 {
+    this->windowSettings = new WindowSettings();
+
     this->window = new sf::RenderWindow(sf::VideoMode(this->windowSettings->readData()["windowWidth"],
                                                       this->windowSettings->readData()["windowHigh"]), "SFML RPG!");
     this->window->setFramerateLimit(120);
     this->window->setVerticalSyncEnabled(false);
 
+    this->mouse = new Mouse(this->window);
 }
 
 void Game::initKeys() {
@@ -33,7 +36,7 @@ void Game::initKeys() {
 
 void Game::initStates()
 {
-    State *mainMenuState = new MainMenuState(this->window, &this->supportedKeys);
+    State *mainMenuState = new MainMenuState(this->window, this->mouse, &this->supportedKeys);
     this->stateContext = new StateContext(mainMenuState);
     mainMenuState->set_context(this->stateContext);
 }

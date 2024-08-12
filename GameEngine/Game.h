@@ -3,13 +3,15 @@
 
 #include "../Settings/WindowSettings.h"
 #include "../States/MainMenuState.h"
+#include "../Controls/Mouse.h"
 
 class Game
 {
 private:
     StateContext *stateContext;
-
     ISettings *windowSettings;
+    Mouse *mouse;
+
     sf::RenderWindow *window;
     sf::Event sfEvent;
 

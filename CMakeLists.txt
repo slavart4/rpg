@@ -10,6 +10,8 @@ add_executable(rpg main.cpp Entities/Entity.cpp Entities/Entity.h GameEngine/Gam
         States/MainMenuState.h
         Forms/Button.cpp
         Forms/Button.h
+        Controls/Mouse.cpp
+        Controls/Mouse.h
 )
 include_directories(include)
 set(EXECUTABLE_OUTPUT_PATH ${rpg_SOURCE_DIR}/bin)

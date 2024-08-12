@@ -14,7 +14,7 @@ private:
 
     std::map<std::string, Button *> buttons;
 public:
-    MainMenuState(sf::RenderWindow* window, std::map <std::string, int> *supportedKeys);
+    MainMenuState(sf::RenderWindow* window, Mouse *mouse, std::map <std::string, int> *supportedKeys);
     ~MainMenuState() override;
 
     void init();

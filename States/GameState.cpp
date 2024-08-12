@@ -1,7 +1,7 @@
 #include "GameState.h"
 
-GameState::GameState(sf::RenderWindow* window,  std::map <std::string, int> *supportedKeys)
-        :State(window, supportedKeys)
+GameState::GameState(sf::RenderWindow* window, Mouse *mouse, std::map <std::string, int> *supportedKeys)
+        :State(window, mouse, supportedKeys)
 {
     std::cout << "GameState" << std::endl;
     this->init();
@@ -49,7 +49,7 @@ void GameState::updateInput(const float& deltaTime)
 
 void GameState::update(const float& deltaTime)
 {
-    this->updateMosePositions();
+    this->updateMousePositions();
     this->updateInput(deltaTime);
     this->player.update(deltaTime);
 }

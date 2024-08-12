@@ -2,6 +2,7 @@
 #define RPG_STATE_H
 
 #include "../Entities/Entity.h"
+#include "../Controls/Mouse.h"
 
 class StateContext;
 class State;
@@ -10,22 +11,18 @@ class State
 {
 protected:
     StateContext *context_;
-
     sf::RenderWindow* window;
+    Mouse *mouse;
+
     std::map <std::string, int> *supportedKeys;
     std::map <std::string, int> keyBinds;
     bool quit;
-
-    //TODO: replace to a separate class
-    sf::Vector2i mousePositionScreen;
-    sf::Vector2i mousePositionWindow;
-    sf::Vector2f mousePositionView;
 
     std::vector<sf::Texture> textures;
 
     virtual void initKeyBinds() = 0;
 public:
-    State(sf::RenderWindow* window, std::map <std::string, int> *supportedKeys);
+    State(sf::RenderWindow* window, Mouse *mouse, std::map <std::string, int> *supportedKeys);
     virtual ~State();
 
     void set_context(StateContext *context) {
@@ -37,12 +34,14 @@ public:
     virtual void checkForQuit();
     virtual void endState() = 0;
 
-    virtual void updateMosePositions();
+    virtual void updateMousePositions();
     virtual void updateInput(const float& deltaTime) = 0;
     virtual void update(const float& deltaTime) = 0;
     virtual void render(sf::RenderTarget* target) = 0;
 };
 
+
+// State machine stuff
 class StateContext {
 private:
     State *state_;

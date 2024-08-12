@@ -1,15 +1,13 @@
 #include "MainMenuState.h"
 
-MainMenuState::MainMenuState(sf::RenderWindow* window,  std::map <std::string, int> *supportedKeys)
-        :State(window, supportedKeys)
+MainMenuState::MainMenuState(sf::RenderWindow* window, Mouse *mouse, std::map <std::string, int> *supportedKeys)
+        : State(window, mouse, supportedKeys)
 {
-    std::cout << "MainMenuState" << std::endl;
     this->init();
 }
 
 MainMenuState::~MainMenuState()
 {
-    std::cout << "~MainMenuState" << std::endl;
     for(auto &button : this->buttons) {
         delete button.second;
     }
@@ -49,19 +47,18 @@ void MainMenuState::updateInput(const float& deltaTime)
 
 void MainMenuState::updateButtons() {
     for(auto &button : this->buttons) {
-        button.second->update(this->mousePositionView);
+        button.second->update(this->mouse->getMousePositionView());
     }
 
     // new game
     if(this->buttons["NEW_GAME"]->getIsPressed()) {
-//        this->endState();
-        this->context_->TransitionTo(new GameState(this->window, this->supportedKeys));
+        this->context_->TransitionTo(new GameState(this->window, this->mouse, this->supportedKeys));
         return;
     }
 
     // check for quit
     if(this->buttons["EXIT_GAME"]->getIsPressed()) {
-//        this->endState();
+        this->context_->TransitionTo(nullptr);
         return;
     }
 }
@@ -82,7 +79,7 @@ void MainMenuState::initButtons() {
 
 void MainMenuState::update(const float& deltaTime)
 {
-    this->updateMosePositions();
+    this->updateMousePositions();
     this->updateInput(deltaTime);
     this->updateButtons();
 }

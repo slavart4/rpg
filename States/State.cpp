@@ -1,34 +1,28 @@
 #include "State.h"
 
-State::State(sf::RenderWindow* window, std::map <std::string, int> *supportedKeys)
-{
-    this->supportedKeys = supportedKeys;
+State::State(sf::RenderWindow* window, Mouse *mouse, std::map <std::string, int> *supportedKeys):
+window(window), mouse(mouse), supportedKeys(supportedKeys) {
     this->window = window;
     this->quit = false;
 }
 
-State::~State()
-{
+State::~State() {
 
 }
 
-const bool& State::getQuit() const
-{
+const bool& State::getQuit() const {
     return this->quit;
 }
 
-void State::checkForQuit()
-{
+void State::checkForQuit() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keyBinds["CLOSE"])))
     {
         this->quit = true;
     }
 }
 
-void State::updateMosePositions() {
-    this->mousePositionScreen = sf::Mouse::getPosition();
-    this->mousePositionWindow = sf::Mouse::getPosition(*this->window);
-    this->mousePositionView = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
+void State::updateMousePositions() {
+    this->mouse->updateMousePosition();
 }
 
 
@@ -42,8 +36,6 @@ StateContext::~StateContext() {
 }
 
 void StateContext::TransitionTo(State *state) {
-    std::cout << "Context: Transition to " << typeid(*state).name()  << " " << state << std::endl;
-
     delete this->state_;
     this->state_ = state;
     this->state_->set_context(this);

@@ -1,15 +1,7 @@
 #ifndef RPG_BUTTON_H
 #define RPG_BUTTON_H
 
-#include <iostream>
-#include <cstdlib>
-#include <fstream>
-#include <sstream>
-
-#include "SFML/Graphics.hpp"
-#include "SFML/Window.hpp"
-#include "SFML/System.hpp"
-#include "SFML/Audio.hpp"
+#include "../constants.h"
 
 enum buttonStates {
     BTN_IDLE = 0,
